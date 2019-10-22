@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SearchFilmFilter } from 'shared/services/models/search-film-filter.model';
+import { SearchFilmIdTitleFilter } from 'shared/services/models/search-film-filter-by-id-title.model';
 
 @Injectable()
-export class SearchFormBuilder {
+export class SearchByIdTitleBuilder {
     constructor(private fb: FormBuilder) {}
 
-    buildForm(model: SearchFilmFilter = new SearchFilmFilter()): FormGroup {
+    buildForm(model: SearchFilmIdTitleFilter = new SearchFilmIdTitleFilter()): FormGroup {
         if (!model) {
             return null;
         }
         return this.fb.group({ 
-            s: [
-                model.s,
+            i: [
+                model.i,
                 [
                 ]
             ],
-            page: [
-                model.page,
+            t: [
+                model.t,
                 [
                 ]
             ],
@@ -26,7 +26,8 @@ export class SearchFormBuilder {
                 model.y,
                 [
                 ]
-            ]
+            ],
+            plot: [model.plot, []]
         });
     }
 }

@@ -1,31 +1,26 @@
 <header class="header">
-    <div class="row">
-        <div class="col-xs-6">
-            {{ date | date:'dd.MM.yyyy' }}
-        </div>
-        <div class="col-xs-6">
-            something
-        </div>
-    </div>
-    <form class="row" [formGroup]="form" (ngSubmit)="searchFilms(form.value)">
+    <form class="row col-xs-12 csb-search__form col-md-6" [formGroup]="searchByIdTitleForm">
         <div class="col-xs-12">
-            <input formControlName="t" name="t" class="csb-search__searcher col-xs-12" type="text" />
+            <div class="form-group">
+                <label> {{ 'filter.filmTitle' | i18nextCap }} </label>
+                <input autocomplete="off" formControlName="t" name="t"
+                    class="csb-search__searcher col-xs-12 form-control input-sm" type="text" />
+            </div>
         </div>
         <div class="col-xs-12">
             <div class="row">
                 <div class="col-xs-3">
                     <div class="form-group">
-                        <label> IMDB ID </label>
+                        <label> {{ 'filter.imdbId' | i18nextCap }} </label>
                         <input class="form-control input-sm" type="email" name="i" formControlName="i" />
                     </div>
                 </div>
                 <div class="col-xs-3">
                     <div class="form-group">
-                        <label> Type of film </label>
+                        <label> {{ 'filter.filmType' | i18nextCap }} </label>
                         <select class="form-control input-sm" formControlName="type" id="type">
                             <option [ngValue]="null">Not Selected</option>
-                            <option
-                                *ngFor='let type of _enums.FilmType | enumList : { dictName: "FilmType" }'
+                            <option *ngFor='let type of _enums.FilmType | enumList : { dictName: "FilmType" }'
                                 [ngValue]='type.id'>
                                 {{ type.name | i18nextCap }}
                             </option>
@@ -33,16 +28,71 @@
                     </div>
                 </div>
                 <div class="col-xs-3">
-                    <label for=""> {{ 'filter.birthDate' | i18nextCap }}</label>
-                    <!-- <input formControlName="y" name="y" type="text" /> -->
+                    <div class="form-group">
+                        <label> {{ 'filter.year' | i18nextCap }} </label>
+                        <input class="form-control input-sm" type="number" name="y" formControlName="y" />
+                    </div>
                 </div>
                 <div class="col-xs-3">
-                    <!-- <input formControlName="plot" name="plot" type="text" /> -->
+                    <div class="form-group">
+                        <label> {{ 'filter.plotType' | i18nextCap }} </label>
+                        <select class="form-control input-sm" formControlName="plot" id="plot">
+                            <option [ngValue]="null">Not Selected</option>
+                            <option *ngFor='let type of _enums.PlotType | enumList : { dictName: "PlotType" }'
+                                [ngValue]='type.id'>
+                                {{ type.name | i18nextCap }}
+                            </option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="row col-xs-12 ">
+            <div class="col-xs-offset-4 col-xs-2">
+                <button (click)="getById(searchByIdTitleForm.value)" class="btn btn-block btn-primary">Find</button>
+            </div>
+            <div class="col-xs-2">
+                <button (click)="clear(searchByIdTitleForm)" class="btn btn-block">Clear</button>
+            </div>
+        </div>
+    </form>
+    <form class="row col-xs-12 csb-search__form col-md-6" [formGroup]="searchForm">
         <div class="col-xs-12">
-            <button type="submit" class="btn btn-block btn-primary">Зарегистрироваться</button>
+            <div class="form-group">
+                <label> {{ 'filter.filmTitle' | i18nextCap }} </label>
+                <input autocomplete="off" formControlName="s" name="s"
+                    class="csb-search__searcher col-xs-12 form-control input-sm" type="text" />
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label> {{ 'filter.filmType' | i18nextCap }} </label>
+                        <select class="form-control input-sm" formControlName="type" id="type">
+                            <option [ngValue]="null">Not Selected</option>
+                            <option *ngFor='let type of _enums.FilmType | enumList : { dictName: "FilmType" }'
+                                [ngValue]='type.id'>
+                                {{ type.name | i18nextCap }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label> {{ 'filter.year' | i18nextCap }} </label>
+                        <input class="form-control input-sm" type="number" name="y" formControlName="y" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row col-xs-12 ">
+            <div class="col-xs-offset-4 col-xs-2">
+                <button (click)="getById(searchForm.value)" class="btn btn-block btn-primary">Find</button>
+            </div>
+            <div class="col-xs-2">
+                <button (click)="clear(searchForm)" class="btn btn-block">Clear</button>
+            </div>
         </div>
     </form>
 </header>

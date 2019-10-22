@@ -1,9 +1,10 @@
 {
     "filter": {
         "id": "Id",
-        "surname": "Surname",
-        "name": "Name",
-        "secondName": "Second name",
-        "birthDate": "Date of birth"
+        "imdbId": "IMDB ID",
+        "filmTitle": "Title of film",
+        "year": "year of film",
+        "filmType": "film type",
+        "plotType": "plot type"
     }
-}
+} 

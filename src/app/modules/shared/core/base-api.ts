@@ -5,7 +5,7 @@ import { Observable } from 'rxjs-compat';
 @Injectable()
 export class BaseApi {
 
-    private baseUrl = 'http://www.omdbapi.com/?i=tt3896198&apikey=65b4ff04';
+    private baseUrl = 'http://www.omdbapi.com/?&apikey=65b4ff04';
 
     constructor(
         public http: HttpClient
@@ -13,6 +13,12 @@ export class BaseApi {
 
     get(url: string): Observable<any> {
         return this.http.get(this.getUrl(url))
+            .map((res: Response) => res);
+
+    }
+
+    getBase(): Observable<any> {
+        return this.http.get(this.getUrl())
             .map((res: Response) => res);
 
     }

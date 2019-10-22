@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { SearchFormBuilder } from './services/search-form.builder';
+
 import { FilmService } from 'shared/services/film.service';
 import { FilmType, PlotType } from 'shared/services/models/enums';
 
-import { I18NextCapPipe } from 'angular-i18next';
+import { SearchFilmIdTitleFilter } from 'shared/services/models/search-film-filter-by-id-title.model';
+import { SearchFormBuilder } from './services/search-form.builder';
+import { SearchByIdTitleBuilder } from './services/search-by-id-title-form.builder';
+import { SearchFilmFilter } from 'shared/services/models/search-film-filter.model';
 
 
 @Component({
@@ -16,7 +19,8 @@ import { I18NextCapPipe } from 'angular-i18next';
 export class SearchComponent implements OnInit {
 
   date: Date = new Date();
-  form: FormGroup;
+  searchByIdTitleForm: FormGroup;
+  searchForm: FormGroup;
 
   // tslint:disable-next-line: variable-name
   _enums = {
@@ -27,19 +31,34 @@ export class SearchComponent implements OnInit {
   constructor(
     private filmService: FilmService,
     private searchFormBuilder: SearchFormBuilder,
-    private i18nextCap: I18NextCapPipe
+    private searchByIdTitleFormBuilder: SearchByIdTitleBuilder
   ) {
-    this.form = this.searchFormBuilder.buildForm();
+    this.searchForm = this.searchFormBuilder.buildForm();
+    this.searchByIdTitleForm = this.searchByIdTitleFormBuilder.buildForm();
   }
 
   ngOnInit() {
   }
 
-  searchFilms(filter) {
+  getById(filter: SearchFilmIdTitleFilter) {
     this.filmService.getFilms(filter)
-      .pipe()
-      .subscribe(res => {
-        console.log(res);
-      });
+      .subscribe(
+        res => {
+          console.log(res);
+        }
+      )
+  }
+
+  searchFilms(filter: SearchFilmFilter) {
+    this.filmService.getFilms(filter)
+      .subscribe(
+        res => {
+          console.log(res);
+        }
+      )
+  }
+
+  clear(form: FormGroup) {
+    form.reset();
   }
 }

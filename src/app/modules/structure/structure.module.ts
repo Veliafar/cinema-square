@@ -13,7 +13,8 @@ import {
     FilmGridComponent,
     FilmDetailsComponent,
     StructureComponent,
-    SearchFormBuilder
+    SearchFormBuilder,
+    SearchByIdTitleBuilder
 } from './components';
 
 @NgModule({
@@ -33,6 +34,7 @@ import {
     ],
     providers: [
         SearchFormBuilder,
+        SearchByIdTitleBuilder,
         {
             provide: I18NEXT_NAMESPACE,
             useValue: ['search', 'enums']
