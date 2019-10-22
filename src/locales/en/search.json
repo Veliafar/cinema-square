@@ -1,0 +1,9 @@
+{
+    "filter": {
+        "id": "Id",
+        "surname": "Surname",
+        "name": "Name",
+        "secondName": "Second name",
+        "birthDate": "Date of birth"
+    }
+}

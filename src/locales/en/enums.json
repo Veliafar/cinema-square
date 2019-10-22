@@ -1,0 +1,11 @@
+{
+    "FilmType": {
+        "movie": "movie",
+        "series": "series",
+        "episode": "episode"
+    },
+    "PlotType": {
+        "short": "short",
+        "full": "full"
+    }
+}

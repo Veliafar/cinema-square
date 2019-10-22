@@ -25,9 +25,13 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/locales"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "node_modules/ngx-toastr/toastr.css",
               "src/styles.less"
             ],
             "scripts": []
@@ -90,7 +94,8 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/locales"
             ],
             "styles": [
               "src/styles.less"
@@ -124,6 +129,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "cinema-square"
 }

@@ -1,0 +1,48 @@
+<header class="header">
+    <div class="row">
+        <div class="col-xs-6">
+            {{ date | date:'dd.MM.yyyy' }}
+        </div>
+        <div class="col-xs-6">
+            something
+        </div>
+    </div>
+    <form class="row" [formGroup]="form" (ngSubmit)="searchFilms(form.value)">
+        <div class="col-xs-12">
+            <input formControlName="t" name="t" class="csb-search__searcher col-xs-12" type="text" />
+        </div>
+        <div class="col-xs-12">
+            <div class="row">
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label> IMDB ID </label>
+                        <input class="form-control input-sm" type="email" name="i" formControlName="i" />
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <div class="form-group">
+                        <label> Type of film </label>
+                        <select class="form-control input-sm" formControlName="type" id="type">
+                            <option [ngValue]="null">Not Selected</option>
+                            <option
+                                *ngFor='let type of _enums.FilmType | enumList : { dictName: "FilmType" }'
+                                [ngValue]='type.id'>
+                                {{ type.name | i18nextCap }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-3">
+                    <label for=""> {{ 'filter.birthDate' | i18nextCap }}</label>
+                    <!-- <input formControlName="y" name="y" type="text" /> -->
+                </div>
+                <div class="col-xs-3">
+                    <!-- <input formControlName="plot" name="plot" type="text" /> -->
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <button type="submit" class="btn btn-block btn-primary">Зарегистрироваться</button>
+        </div>
+    </form>
+</header>
