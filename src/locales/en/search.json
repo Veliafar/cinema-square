@@ -5,6 +5,7 @@
         "filmTitle": "Title of film",
         "year": "year of film",
         "filmType": "film type",
-        "plotType": "plot type"
+        "plotType": "plot type",
+        "searchType": "type of search"
     }
 } 

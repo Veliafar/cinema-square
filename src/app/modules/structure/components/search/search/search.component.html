@@ -1,21 +1,39 @@
 <header class="header">
-    <form class="row col-xs-12 csb-search__form col-md-6" [formGroup]="searchByIdTitleForm">
-        <div class="col-xs-12">
+    <div class="row col-xs-12 ">
+        <div class="col-xs-1">
             <div class="form-group">
-                <label> {{ 'filter.filmTitle' | i18nextCap }} </label>
-                <input autocomplete="off" formControlName="t" name="t"
-                    class="csb-search__searcher col-xs-12 form-control input-sm" type="text" />
+                <label> {{ 'filter.searchType' | i18nextCap }} </label>
+                <select class="form-control input-sm" [(ngModel)]="filmService.searchType" id="plot">
+                    <option *ngFor='let type of _enums.SearchType | enumList : { dictName: "SearchType" }'
+                        [ngValue]='type.id'>
+                        {{ type.name | i18nextCap }}
+                    </option>
+                </select>
             </div>
         </div>
+        <div class="col-xs-11">
+        </div>
+    </div>
+    <form *ngIf="filmService.searchType === _enums.SearchType.exactSearch" class="row col-xs-12 csb-search__form"
+        [formGroup]="searchByIdTitleForm">
         <div class="col-xs-12">
             <div class="row">
-                <div class="col-xs-3">
+                <div class="col-xs-2">
+                    <div class="form-group">
+                        <label> {{ 'filter.filmTitle' | i18nextCap }} </label>
+                        <input autocomplete="off" formControlName="t" name="t"
+                            class="csb-search__searcher col-xs-12 form-control input-sm" type="text" />
+                    </div>
+                </div>
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-2">
                     <div class="form-group">
                         <label> {{ 'filter.imdbId' | i18nextCap }} </label>
                         <input class="form-control input-sm" type="email" name="i" formControlName="i" />
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                     <div class="form-group">
                         <label> {{ 'filter.filmType' | i18nextCap }} </label>
                         <select class="form-control input-sm" formControlName="type" id="type">
@@ -27,13 +45,15 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-2">
                     <div class="form-group">
                         <label> {{ 'filter.year' | i18nextCap }} </label>
                         <input class="form-control input-sm" type="number" name="y" formControlName="y" />
                     </div>
                 </div>
-                <div class="col-xs-3">
+                <div class="col-xs-1">
+                </div>
+                <div class="col-xs-2">
                     <div class="form-group">
                         <label> {{ 'filter.plotType' | i18nextCap }} </label>
                         <select class="form-control input-sm" formControlName="plot" id="plot">
@@ -56,17 +76,18 @@
             </div>
         </div>
     </form>
-    <form class="row col-xs-12 csb-search__form col-md-6" [formGroup]="searchForm">
-        <div class="col-xs-12">
-            <div class="form-group">
-                <label> {{ 'filter.filmTitle' | i18nextCap }} </label>
-                <input autocomplete="off" formControlName="s" name="s"
-                    class="csb-search__searcher col-xs-12 form-control input-sm" type="text" />
-            </div>
-        </div>
+    <form *ngIf="filmService.searchType === _enums.SearchType.freeSearch" class="row col-xs-12 csb-search__form"
+        [formGroup]="searchForm">
         <div class="col-xs-12">
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-4">
+                    <div class="form-group">
+                        <label> {{ 'filter.filmTitle' | i18nextCap }} </label>
+                        <input autocomplete="off" formControlName="s" name="s"
+                            class="csb-search__searcher col-xs-12 form-control input-sm" type="text" />
+                    </div>
+                </div>
+                <div class="col-xs-4">
                     <div class="form-group">
                         <label> {{ 'filter.filmType' | i18nextCap }} </label>
                         <select class="form-control input-sm" formControlName="type" id="type">
@@ -78,7 +99,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-4">
                     <div class="form-group">
                         <label> {{ 'filter.year' | i18nextCap }} </label>
                         <input class="form-control input-sm" type="number" name="y" formControlName="y" />

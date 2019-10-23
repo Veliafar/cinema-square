@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms';
 
 
 import { FilmService } from 'shared/services/film.service';
-import { FilmType, PlotType } from 'shared/services/models/enums';
+import { FilmType, PlotType, SearchType } from 'shared/services/models/enums';
 
 import { SearchFilmIdTitleFilter } from 'shared/services/models/search-film-filter-by-id-title.model';
 import { SearchFormBuilder } from './services/search-form.builder';
@@ -25,7 +25,8 @@ export class SearchComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   _enums = {
     FilmType,
-    PlotType
+    PlotType,
+    SearchType
   };
 
   constructor(

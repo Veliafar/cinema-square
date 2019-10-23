@@ -5,10 +5,14 @@ import { BaseApi } from '../core/base-api';
 import { SearchFilmFilter } from './models/search-film-filter.model';
 import 'rxjs/add/operator/map'
 import { SearchFilmIdTitleFilter } from './models/search-film-filter-by-id-title.model';
+import { SearchType } from './models/enums';
 
 
 @Injectable()
 export class FilmService extends BaseApi {
+
+    searchType: SearchType = SearchType.freeSearch;
+
     constructor(
         public http: HttpClient
     ) {

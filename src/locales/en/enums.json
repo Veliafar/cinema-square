@@ -7,5 +7,9 @@
     "PlotType": {
         "short": "short",
         "full": "full"
+    },
+    "SearchType": {
+        "exactSearch": "exact search",
+        "freeSearch": "free search"
     }
 }
