@@ -1,6 +1,6 @@
 <div class="col-xs-12 csb__structure">
-    <csb-search></csb-search>
+    <csb-search (freeSearchEmit)="freeFilmsSearchStart($event)" (exactSearchEmit)="exactFilmSearchStart($event)"></csb-search>
     <div class="row col-xs-12">
         <router-outlet></router-outlet>
     </div>
-</div>
+</div> 

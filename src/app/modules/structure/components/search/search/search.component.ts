@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, EventEmitter, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
 
@@ -18,10 +18,14 @@ import { SearchFilmFilter } from 'shared/services/models/search-film-filter.mode
 })
 export class SearchComponent implements OnInit {
 
+
   date: Date = new Date();
   searchByIdTitleForm: FormGroup;
   searchForm: FormGroup;
 
+  @Output() exactSearchEmit = new EventEmitter<SearchFilmIdTitleFilter>();
+  @Output() freeSearchEmit = new EventEmitter<SearchFilmFilter>();
+ 
   // tslint:disable-next-line: variable-name
   _enums = {
     FilmType,
@@ -41,25 +45,17 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  getById(filter: SearchFilmIdTitleFilter) {
-    this.filmService.getFilms(filter)
-      .subscribe(
-        res => {
-          console.log(res);
-        }
-      )
+  freeFilmsSearch(filter) {
+    console.log('sasd');
+    this.freeSearchEmit.emit(filter);
   }
 
-  searchFilms(filter: SearchFilmFilter) {
-    this.filmService.getFilms(filter)
-      .subscribe(
-        res => {
-          console.log(res);
-        }
-      )
+  exactFilmSearch(filter) {
+    this.exactSearchEmit.emit(filter);
   }
 
   clear(form: FormGroup) {
     form.reset();
   }
+
 }

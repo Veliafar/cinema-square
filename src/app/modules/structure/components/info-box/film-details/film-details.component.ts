@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FilmService } from 'shared/services/film.service';
 
 @Component({
   selector: 'csb-film-details',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilmDetailsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private filmService: FilmService
+  ) { }
 
   ngOnInit() {
   }

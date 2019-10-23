@@ -6,12 +6,15 @@ import { SearchFilmFilter } from './models/search-film-filter.model';
 import 'rxjs/add/operator/map'
 import { SearchFilmIdTitleFilter } from './models/search-film-filter-by-id-title.model';
 import { SearchType } from './models/enums';
+import { ExactSearchModel } from './models/exact-search.model';
 
 
 @Injectable()
 export class FilmService extends BaseApi {
 
     searchType: SearchType = SearchType.freeSearch;
+
+    exactFilm: ExactSearchModel = new ExactSearchModel();
 
     constructor(
         public http: HttpClient

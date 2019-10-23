@@ -69,7 +69,7 @@
         </div>
         <div class="row col-xs-12 ">
             <div class="col-xs-offset-4 col-xs-2">
-                <button (click)="getById(searchByIdTitleForm.value)" class="btn btn-block btn-primary">Find</button>
+                <button (click)="exactFilmSearch(searchByIdTitleForm.value)" class="btn btn-block btn-primary">Find</button>
             </div>
             <div class="col-xs-2">
                 <button (click)="clear(searchByIdTitleForm)" class="btn btn-block">Clear</button>
@@ -109,7 +109,7 @@
         </div>
         <div class="row col-xs-12 ">
             <div class="col-xs-offset-4 col-xs-2">
-                <button (click)="getById(searchForm.value)" class="btn btn-block btn-primary">Find</button>
+                <button (click)="freeFilmsSearch(searchForm.value)" class="btn btn-block btn-primary">Find</button>
             </div>
             <div class="col-xs-2">
                 <button (click)="clear(searchForm)" class="btn btn-block">Clear</button>
