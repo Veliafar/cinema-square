@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FilmService } from 'shared/services/film.service';
+
+import {
+  FilmType,
+  PlotType
+} from './../../../../shared/services/models/enums';
 
 @Component({
   selector: 'csb-film-grid',
@@ -7,9 +13,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FilmGridComponent implements OnInit {
 
-  constructor() { }
+  // tslint:disable-next-line: variable-name
+  _enums = {
+    FilmType,
+    PlotType
+  };
+
+  constructor(
+    private filmService: FilmService
+  ) { }
 
   ngOnInit() {
+  }
+
+  viewDetails(id) {
+    console.log(id);
   }
 
 }

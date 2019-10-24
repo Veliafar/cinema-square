@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map'
 import { SearchFilmIdTitleFilter } from './models/search-film-filter-by-id-title.model';
 import { SearchType } from './models/enums';
 import { ExactSearchModel } from './models/exact-search.model';
+import { FreeSearchModel } from './models/free-search.model';
 
 
 @Injectable()
@@ -15,6 +16,8 @@ export class FilmService extends BaseApi {
     searchType: SearchType = SearchType.freeSearch;
 
     exactFilm: ExactSearchModel = new ExactSearchModel();
+    searchedFilms: FreeSearchModel[] = new Array<FreeSearchModel>();
+    totalResults: number;
 
     constructor(
         public http: HttpClient
@@ -29,7 +32,7 @@ export class FilmService extends BaseApi {
                 const element = filter[key];
                 query = query + '&' + key + '=' + element;
             }
-        }       
+        }
         return this.get(`${query}`)
             .map((res => {
                 return res;

@@ -1,1 +1,53 @@
-<p>film-grid works!</p>
+<div class="col-xs-12">
+    <div class="table-responsive">
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th class="col-xs-1">
+                        Title
+                    </th>
+                    <th>
+                        imdbID
+
+                    </th>
+                    <th>
+                        Film type
+                    </th>
+                    <th>
+                        Poster
+                    </th>
+                    <th>
+                        Year
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let film of filmService.searchedFilms" (click)="viewDetails(film.imdbID)">
+                    <td>
+                        {{ film.Title }}
+                    </td>
+                    <td>
+                        {{ film.imdbID }}
+                    </td>
+                    <td>
+                        {{ film.Type | enumKey: { currentEnum:
+                                            _enums.FilmType, dictName: "FilmType"} | i18nextCap }}
+                    </td>
+                    <td>
+                        <img src="{{ film.Poster }}" alt="">
+                    </td>
+                    <td>
+                        {{ film.Year }}
+                    </td>
+                </tr>
+                <tr *ngIf="!filmService.searchedFilms || !filmService.searchedFilms.length ">
+                    <td colspan="11" class="text-center">
+                        <span>
+                            Not Found
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

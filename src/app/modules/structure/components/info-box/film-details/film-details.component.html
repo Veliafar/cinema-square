@@ -1,8 +1,6 @@
-
-
 <p *ngIf="!filmService.exactFilm"> Movie not found </p>
 
-<div *ngIf="filmService.exactFilm"> 
+<div *ngIf="filmService.exactFilm">
     <p>
         {{ filmService.exactFilm.Title }}
     </p>

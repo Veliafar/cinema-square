@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit {
 
   @Output() exactSearchEmit = new EventEmitter<SearchFilmIdTitleFilter>();
   @Output() freeSearchEmit = new EventEmitter<SearchFilmFilter>();
- 
+
   // tslint:disable-next-line: variable-name
   _enums = {
     FilmType,
@@ -46,7 +46,6 @@ export class SearchComponent implements OnInit {
   }
 
   freeFilmsSearch(filter) {
-    console.log('sasd');
     this.freeSearchEmit.emit(filter);
   }
 

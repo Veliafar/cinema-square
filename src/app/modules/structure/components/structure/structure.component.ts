@@ -38,15 +38,13 @@ export class StructureComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         (res: ExactSearchModel) => {
-          
           this.filmService.exactFilm = null;
           if (res.Response === 'True') {
             this.filmService.exactFilm = res;
             this.router.navigate(['/film-details']);
           }
-          
         }
-      )
+      );
   }
 
   freeFilmsSearchStart(filter: SearchFilmFilter) {
@@ -58,15 +56,18 @@ export class StructureComponent implements OnInit, OnDestroy {
       .subscribe(
         (res: FreeSearchListModel) => {
           console.log(res);
+          if (res.Response === 'True') {
+            this.filmService.searchedFilms = res.Search;
+            // tslint:disable-next-line: radix
+            console.log(res.totalResults);
+            
+            // this.filmService.totalResults = parseInt(res.totalResults);
 
-          this.searchedFilms = res.Search;
-          this.totalResults = +res.totalResults;
-
-          console.log(this.searchedFilms);
-          console.log(this.totalResults);
-
+            console.log(this.searchedFilms);
+            console.log(this.totalResults);
+          }
         }
-      )
+      );
   }
 
   ngOnDestroy() {
