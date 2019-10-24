@@ -1,11 +1,51 @@
-<p *ngIf="!filmService.exactFilm"> Movie not found </p>
+<p class="text-center" *ngIf="!filmService.isDataExist"> Movie not found </p>
 
-<div *ngIf="filmService.exactFilm">
-    <p>
-        {{ filmService.exactFilm.Title }}
-    </p>
-    <p>
-        {{ filmService.exactFilm.Year }}
-    </p>
-    <img src="{{ filmService.exactFilm.Poster }}">
+<div *ngIf="filmService.isDataExist">
+    <div class="csb__grid-wrapper">
+        <div class="csb__grid-element" (click)="viewDetails(film.imdbID)">
+            <div class="csb__grid-title">
+                <h3>{{ filmService.exactFilm.Title }}</h3>
+            </div>
+            <div class="csb__grid-card">
+                <div class="csb__grid-info">
+                    <div>
+                        <span class="label">imdbID</span>
+                        <span class="csb__grid-text">{{ filmService.exactFilm.imdbID }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Film type</span>
+                        <span class="csb__grid-text">{{ filmService.exactFilm.Type | enumKey: { currentEnum:
+                                                _enums.FilmType, dictName: "FilmType"} | i18nextCap }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Year</span>
+                        <span class="csb__grid-text">{{ filmService.exactFilm.Year }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Genre</span>
+                        <span class="csb__grid-text">{{ filmService.exactFilm.Genre }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Actors</span>
+                        <span class="csb__grid-text">{{ filmService.exactFilm.Actors }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Director</span>
+                        <span class="csb__grid-text">{{ filmService.exactFilm.Director }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Awards</span>
+                        <span class="csb__grid-text">{{ filmService.exactFilm.Awards }}</span>
+                    </div>
+                    <div>
+                        <span class="label">BoxOffice</span>
+                        <span class="csb__grid-text">{{ filmService.exactFilm.BoxOffice }}</span>
+                    </div>
+                </div>
+                <div class="csb__grid-poster" *ngIf="filmService.exactFilm && filmService.exactFilm.Poster && filmService.exactFilm.Poster !== 'N/A'">
+                    <img src="{{ filmService.exactFilm.Poster }}" alt="{{ filmService.exactFilm.Title }} poster">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -14,7 +14,7 @@ const routes: Routes = [
                 component: FilmGridComponent,
             },
             {
-                path: 'film-details',
+                path: 'film-details/:id',
                 component: FilmDetailsComponent,
             }
         ]

@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
   templateUrl: './structure.component.html',
   styleUrls: ['./structure.component.less']
 })
-export class StructureComponent implements OnInit, OnDestroy {
+export class StructureComponent implements OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
 
   searchedFilms: FreeSearchModel[] = new Array<FreeSearchModel>();
@@ -27,9 +27,6 @@ export class StructureComponent implements OnInit, OnDestroy {
     private router: Router
   ) { }
 
-  ngOnInit() {
-  }
-
   exactFilmSearchStart(filter: SearchFilmIdTitleFilter) {
 
     this.filmService.getFilms(filter)
@@ -38,10 +35,12 @@ export class StructureComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         (res: ExactSearchModel) => {
-          this.filmService.exactFilm = null;
+          this.filmService.isDataExist = false;
           if (res.Response === 'True') {
+            
             this.filmService.exactFilm = res;
-            this.router.navigate(['/film-details']);
+            this.filmService.isDataExist = true;
+            this.router.navigate([`/film-details/${this.filmService.exactFilm.imdbID}`]);
           }
         }
       );
@@ -55,16 +54,12 @@ export class StructureComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         (res: FreeSearchListModel) => {
-          console.log(res);
+          this.filmService.isDataExist = false;
+
           if (res.Response === 'True') {
             this.filmService.searchedFilms = res.Search;
-            // tslint:disable-next-line: radix
-            console.log(res.totalResults);
-            
-            // this.filmService.totalResults = parseInt(res.totalResults);
-
-            console.log(this.searchedFilms);
-            console.log(this.totalResults);
+            this.filmService.isDataExist = true;
+            this.router.navigate(['/film-grid']);
           }
         }
       );

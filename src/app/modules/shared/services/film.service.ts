@@ -13,6 +13,8 @@ import { FreeSearchModel } from './models/free-search.model';
 @Injectable()
 export class FilmService extends BaseApi {
 
+    isDataExist: boolean = false;
+
     searchType: SearchType = SearchType.freeSearch;
 
     exactFilm: ExactSearchModel = new ExactSearchModel();
@@ -34,6 +36,13 @@ export class FilmService extends BaseApi {
             }
         }
         return this.get(`${query}`)
+            .map((res => {
+                return res;
+            }));
+    }
+
+    getById(id) {
+        return this.get(`&i=${id}`)
             .map((res => {
                 return res;
             }));

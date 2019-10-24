@@ -1,53 +1,32 @@
-<div class="col-xs-12">
-    <div class="table-responsive">
-        <table class="table table-hover table-condensed">
-            <thead>
-                <tr>
-                    <th class="col-xs-1">
-                        Title
-                    </th>
-                    <th>
-                        imdbID
+<p class="text-center" *ngIf="!filmService.isDataExist"> Movie not found </p>
 
-                    </th>
-                    <th>
-                        Film type
-                    </th>
-                    <th>
-                        Poster
-                    </th>
-                    <th>
-                        Year
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let film of filmService.searchedFilms" (click)="viewDetails(film.imdbID)">
-                    <td>
-                        {{ film.Title }}
-                    </td>
-                    <td>
-                        {{ film.imdbID }}
-                    </td>
-                    <td>
-                        {{ film.Type | enumKey: { currentEnum:
-                                            _enums.FilmType, dictName: "FilmType"} | i18nextCap }}
-                    </td>
-                    <td>
-                        <img src="{{ film.Poster }}" alt="">
-                    </td>
-                    <td>
-                        {{ film.Year }}
-                    </td>
-                </tr>
-                <tr *ngIf="!filmService.searchedFilms || !filmService.searchedFilms.length ">
-                    <td colspan="11" class="text-center">
-                        <span>
-                            Not Found
-                        </span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+<div *ngIf="filmService.isDataExist">
+    <div class="csb__grid-wrapper">
+        <div class="csb__grid-element" *ngFor="let film of filmService.searchedFilms"
+            (click)="viewDetails(film.imdbID)">
+            <div class="csb__grid-title">
+                <h3>{{ film.Title }}</h3>
+            </div>
+            <div class="csb__grid-card">
+                <div class="csb__grid-info">
+                    <div>
+                        <span class="label">imdbID</span>
+                        <span class="csb__grid-text">{{ film.imdbID }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Film type</span>
+                        <span class="csb__grid-text">{{ film.Type | enumKey: { currentEnum:
+                                    _enums.FilmType, dictName: "FilmType"} | i18nextCap }}</span>
+                    </div>
+                    <div>
+                        <span class="label">Year</span>
+                        <span class="csb__grid-text">{{ film.Year }}</span>
+                    </div>
+                </div>
+                <div class="csb__grid-poster" *ngIf="film.Poster !== 'N/A'">
+                    <img src="{{ film.Poster }}">
+                </div>
+            </div>
+        </div>
     </div>
 </div>

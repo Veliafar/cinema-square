@@ -16,7 +16,7 @@ import { SearchFilmFilter } from 'shared/services/models/search-film-filter.mode
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.less']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
 
   date: Date = new Date();
@@ -40,9 +40,6 @@ export class SearchComponent implements OnInit {
   ) {
     this.searchForm = this.searchFormBuilder.buildForm();
     this.searchByIdTitleForm = this.searchByIdTitleFormBuilder.buildForm();
-  }
-
-  ngOnInit() {
   }
 
   freeFilmsSearch(filter) {
