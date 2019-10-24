@@ -1,11 +1,12 @@
 <p class="text-center" *ngIf="!filmService.isDataExist"> Movie not found </p>
+<p class="text-center" *ngIf="filmService.isDataExist && !filmService.favoriteList.length"> Favorite list empty </p>
 
 <div *ngIf="filmService.isDataExist">
     <div class="csb__grid-wrapper">
         <div class="csb__grid-element" *ngFor="let film of filmService.searchedFilms"
-            (click)="viewDetails(film.imdbID)">
+            >
             <div class="csb__grid-title">
-                <h3>{{ film.Title }}</h3>
+                <h3 (click)="viewDetails(film.imdbID)" >{{ film.Title }}</h3>
             </div>
             <div class="csb__grid-card">
                 <div class="csb__grid-info">
@@ -22,8 +23,12 @@
                         <span class="label">Year</span>
                         <span class="csb__grid-text">{{ film.Year }}</span>
                     </div>
+                    <button (click)="filmService.addToList(film)"
+                        *ngIf="!filmService.isFilmInList(film.imdbID)">add to list</button>
+                    <button (click)="filmService.removeFromList(film.imdbID)"
+                        *ngIf="filmService.isFilmInList(film.imdbID)">remove from list</button>
                 </div>
-                <div class="csb__grid-poster" *ngIf="film.Poster !== 'N/A'">
+                <div (click)="viewDetails(film.imdbID)" class="csb__grid-poster" *ngIf="film.Poster !== 'N/A'">
                     <img src="{{ film.Poster }}">
                 </div>
             </div>

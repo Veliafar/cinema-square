@@ -9,6 +9,7 @@ import { SearchFilmIdTitleFilter } from 'shared/services/models/search-film-filt
 import { SearchFormBuilder } from './services/search-form.builder';
 import { SearchByIdTitleBuilder } from './services/search-by-id-title-form.builder';
 import { SearchFilmFilter } from 'shared/services/models/search-film-filter.model';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -36,7 +37,8 @@ export class SearchComponent {
   constructor(
     private filmService: FilmService,
     private searchFormBuilder: SearchFormBuilder,
-    private searchByIdTitleFormBuilder: SearchByIdTitleBuilder
+    private searchByIdTitleFormBuilder: SearchByIdTitleBuilder,
+    private router: Router
   ) {
     this.searchForm = this.searchFormBuilder.buildForm();
     this.searchByIdTitleForm = this.searchByIdTitleFormBuilder.buildForm();
@@ -44,6 +46,13 @@ export class SearchComponent {
 
   freeFilmsSearch(filter) {
     this.freeSearchEmit.emit(filter);
+  }
+
+  seeFavoriteList() {
+    this.filmService.searchedFilms = this.filmService.favoriteList;
+    this.filmService.isDataExist = true;
+    this.router.navigate(['/film-grid']);
+    
   }
 
   exactFilmSearch(filter) {

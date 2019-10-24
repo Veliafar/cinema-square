@@ -2,9 +2,13 @@
 
 <div *ngIf="filmService.isDataExist">
     <div class="csb__grid-wrapper">
-        <div class="csb__grid-element" (click)="viewDetails(film.imdbID)">
+        <div class="csb__grid-element">
             <div class="csb__grid-title">
                 <h3>{{ filmService.exactFilm.Title }}</h3>
+                <button (click)="filmService.addToList(filmService.exactFilm)"
+                    *ngIf="!filmService.isFilmInList(filmService.exactFilm.imdbID)">add to list</button>
+                <button (click)="filmService.removeFromList(filmService.exactFilm.imdbID)"
+                    *ngIf="filmService.isFilmInList(filmService.exactFilm.imdbID)">remove from list</button>
             </div>
             <div class="csb__grid-card">
                 <div class="csb__grid-info">
@@ -42,8 +46,10 @@
                         <span class="csb__grid-text">{{ filmService.exactFilm.BoxOffice }}</span>
                     </div>
                 </div>
-                <div class="csb__grid-poster" *ngIf="filmService.exactFilm && filmService.exactFilm.Poster && filmService.exactFilm.Poster !== 'N/A'">
-                    <img src="{{ filmService.exactFilm.Poster }}" alt="{{ filmService.exactFilm.Title }} poster">
+                <div class="csb__grid-poster"
+                    *ngIf="filmService.exactFilm && filmService.exactFilm.Poster && filmService.exactFilm.Poster !== 'N/A'">
+                    <a><img src="{{ filmService.exactFilm.Poster }}" alt="{{ filmService.exactFilm.Title }} poster"></a>
+
                 </div>
             </div>
         </div>

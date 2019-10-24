@@ -8,10 +8,13 @@ import { SearchFilmIdTitleFilter } from './models/search-film-filter-by-id-title
 import { SearchType } from './models/enums';
 import { ExactSearchModel } from './models/exact-search.model';
 import { FreeSearchModel } from './models/free-search.model';
+import { element } from 'protractor';
 
 
 @Injectable()
 export class FilmService extends BaseApi {
+
+    favoriteList: FreeSearchModel[] = new Array<FreeSearchModel>();
 
     isDataExist: boolean = false;
 
@@ -46,6 +49,25 @@ export class FilmService extends BaseApi {
             .map((res => {
                 return res;
             }));
+    }
+
+
+    addToList(film: FreeSearchModel) {
+        const newFilm = Object.assign({}, film);
+        this.favoriteList.push(newFilm);
+
+    }
+
+    removeFromList(imdbID: string) {
+        this.favoriteList.forEach((item, index) => {
+            if (item.imdbID === imdbID) this.favoriteList.splice(index, 1);
+        });
+    }
+
+    isFilmInList(imdbID: string) {
+        return this.favoriteList.find((el: FreeSearchModel) => {
+            return el.imdbID === imdbID;
+        });
     }
 }
 
